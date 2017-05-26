@@ -4,6 +4,10 @@ import Router from 'vue-router'
 import PagesView from '../views/PagesView'
 import LoginView from '../views/LoginView'
 
+import SummaryView from '../views/SummaryView'
+import RecentView from '../views/RecentView'
+import RecondView from '../views/RecondView'
+
 Vue.use(Router)
 
 export default new Router({
@@ -17,30 +21,30 @@ export default new Router({
       name: 'LoginView',
       component: LoginView
     },
-    // {
-    //   path: '/Pages',
-    //   component: PagesView,
-    //   children: [
-    //     {
-    //       path: '',
-    //       redirect: '/Pages/option1'
-    //     },
-    //     {
-    //       path: 'option1',
-    //       name: 'option1View',
-    //       component: option1View
-    //     },
-    //     {
-    //       path: 'option2',
-    //       name: 'option2View',
-    //       component: option2View
-    //     },
-    //     {
-    //       path: 'option3',
-    //       name: 'option3View',
-    //       component: option3View
-    //     }
-    //   ]
-    // }
+    {
+      path: '/Pages',
+      component: PagesView,
+      children: [
+        {
+          path: '',
+          redirect: '/Pages/Summary'
+        },
+        {
+          path: 'Summary',
+          name: 'SummaryView',
+          component: SummaryView
+        },
+        {
+          path: 'Recent',
+          name: 'RecentView',
+          component: RecentView
+        },
+        {
+          path: 'Recond',
+          name: 'RecondView',
+          component: RecondView
+        }
+      ]
+    }
   ]
 })

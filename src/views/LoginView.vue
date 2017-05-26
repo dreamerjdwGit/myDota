@@ -16,7 +16,7 @@
       </div>
       <div class="form-group">
         <div class="col-xs-12">
-          <button type="submit" class="btn btn-info btn-login" :disabled="isDisabled">{{loginState}}</button>
+          <button @click="onSubmit" class="btn btn-info btn-login" :disabled="isDisabled">{{loginState}}</button>
         </div>
       </div>
       <div class="form-group">
@@ -45,20 +45,25 @@ export default {
       this.isDisabled = true;
     },
     onSubmit: function () {
-
       this.beforeSubmit();
 
-      this.$store.dispatch({
-        type: 'login',
-        userID: this.userID,
-        userPassword: this.userPassword
-      }).then(res => {
-        // Success handle
-        this.onSuccess(res)
-      }, err => {
-        // Error handle
-        this.onError(err)
-      })
+      this.$nextTick(function(){
+        if(this.userID === 'dreamerjdw' && this.userPassword === "123") {
+          this.$router.push({ name: 'SummaryView' })
+        }
+      });
+
+      // this.$store.dispatch({
+      //   type: 'login',
+      //   userID: this.userID,
+      //   userPassword: this.userPassword
+      // }).then(res => {
+      //   // Success handle
+      //   this.onSuccess(res)
+      // }, err => {
+      //   // Error handle
+      //   this.onError(err)
+      // })
     }
   }
 }
@@ -79,13 +84,16 @@ export default {
     font-family: "Times New Roman",Georgia,Serif;
     font-weight: bold;
   }
+  .login-header {
+    border-bottom: 0.1rem solid grey;
+  }
   .login-form {
-    margin-top: 5rem;
+    margin-top: 3rem;
     padding: 0 2rem;
   }
   button,input {
     width: 100%;
-    height: 4.4rem;
+    height: 4rem;
     font-size: 2rem;
   }
 </style>
